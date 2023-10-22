@@ -3,8 +3,6 @@
 // Execute `rustlings hint errors4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 #[derive(PartialEq, Debug)]
 struct PositiveNonzeroInteger(u64);
 
@@ -17,6 +15,13 @@ enum CreationError {
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
         // Hmm...? Why is this only returning an Ok value?
+        // using match need to using i64::MIN_VALUE i guess ?
+        if value < 0 {
+            Err(CreationError::Negative)?
+        } else if value == 0 {
+            Err(CreationError::Zero)?
+        };
+
         Ok(PositiveNonzeroInteger(value as u64))
     }
 }
